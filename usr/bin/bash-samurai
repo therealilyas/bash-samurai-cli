@@ -1,0 +1,61 @@
+#!/bin/bash
+
+DATA_DIR="/usr/share/bash-samurai"
+
+show_help() {
+    echo "Bash Samurai CLI — Bashni 0 dan Samurai gacha o‘rganing!"
+    echo
+    echo "Foydalanish:"
+    echo "  bash-samurai [option]"
+    echo
+    echo "Optionlar:"
+    echo "  --list              Barcha darslarni ko‘rish"
+    echo "  --lesson [raqam]    Belgilangan darsni o‘qish (masalan: --lesson 1)"
+    echo "  --cheatsheet        Cheat sheetni ko‘rsatish"
+    echo "  --version           Versiyani ko‘rsatish"
+    echo "  --help              Yordam"
+    echo
+}
+
+show_lessons() {
+    echo "📘 Mavjud darslar:"
+    ls "$DATA_DIR/lessons" | nl
+}
+
+show_lesson() {
+    num=$1
+    lesson_file=$(ls "$DATA_DIR/lessons" | sed -n "${num}p")
+    if [ -z "$lesson_file" ]; then
+        echo "❌ Bunday dars topilmadi."
+        exit 1
+    fi
+    echo "📖 Dars: $lesson_file"
+    echo "------------------------------------"
+    cat "$DATA_DIR/lessons/$lesson_file"
+    echo
+}
+
+show_cheatsheet() {
+    cat "$DATA_DIR/cheatsheet.md"
+}
+
+case "$1" in
+    --list)
+        show_lessons
+        ;;
+    --lesson)
+        show_lesson "$2"
+        ;;
+    --cheatsheet)
+        show_cheatsheet
+        ;;
+    --version)
+        echo "Bash Samurai v1.0"
+        ;;
+    --help|"")
+        show_help
+        ;;
+    *)
+        echo "Noto‘g‘ri buyruq. Yordam uchun: bash-samurai --help"
+        ;;
+esac

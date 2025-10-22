@@ -1,0 +1,9 @@
+Package: bash-samurai
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Ilyas Sultanov <ilyas.sultanov@accesa.uz>
+Description: Bash Samurai — Bashni 0 dan Hero gacha o‘rgatadigan interaktiv CLI darslik.
+ Bash Samurai — bu interaktiv buyruq satri orqali Bashni o‘rganish tizimi.
+ Unda siz darslar, misollar, va cheat-sheetlardan foydalanasiz.
